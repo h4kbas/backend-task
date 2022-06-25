@@ -24,4 +24,24 @@ router.get('/:id', getProfile ,async (req, res) =>{
   res.json(contract)
 })
 
+// Returns a list of contracts belonging to a user (client or contractor), the list should only contain non terminated contracts.
+router.get('/', getProfile ,async (req, res) =>{
+    const {Contract} = req.app.get('models')
+    const profileId = req.profile.id
+    
+    const contracts = await Contract.findAll({
+        where: {
+            [Op.not]:[
+              {status: 'terminated'}
+            ],
+            [Op.or]:[
+                { ClientId: profileId },
+                { ContractorId: profileId }
+            ]
+        }
+    })
+    res.json(contracts)
+  })
+  
+
 module.exports = router;

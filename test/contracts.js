@@ -1,5 +1,5 @@
 const request = require('supertest');
-
+const expect = require('chai').expect;
 const app = require('../src/app');
 
 describe('GET /contracts/:id', function() {
@@ -16,6 +16,19 @@ describe('GET /contracts/:id', function() {
       .get('/contracts/3')
       .set('profile_id', '1')
       .expect(404, done);
+  });
+});
+
+
+describe('GET /contracts', function() {
+  it('returns all contracts belonging to the profile with json successfuly', async function() {
+    const res = await request(app)
+      .get('/contracts')
+      .set('profile_id', '2')
+      .expect('Content-Type', /json/)
+      .expect(200);
+    
+      expect(res.body.length).to.be.equal(2)
   });
 });
 
