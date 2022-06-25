@@ -10,11 +10,16 @@
   },
   "scripts": {
     "start": "nodemon ./src/server.js",
-    "seed": "node ./scripts/seedDb.js"
+    "seed": "node ./scripts/seedDb.js",
+    "test": "mocha --timeout 5000"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
     "concurrently": "4.1.0",
-    "nodemon": "1.19.1"
+    "eslint": "^8.18.0",
+    "mocha": "^10.0.0",
+    "nodemon": "1.19.1",
+    "supertest": "^6.2.3"
   },
   "engines": {
     "node": ">=10.16.3"
