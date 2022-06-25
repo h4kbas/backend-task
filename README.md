@@ -5,6 +5,7 @@
 Run the following command
 ```
 npm install
+npm run seed
 ```
 
 ## How to run
